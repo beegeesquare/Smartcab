@@ -141,7 +141,8 @@ class LearningAgent(Agent):
         else:
             # When not learning, choose a random action
             action=self.valid_actions[random.randint(0,len(self.valid_actions)-1)]
-        
+            # for testing-set act
+            #action=None
        
  
         return action
@@ -154,7 +155,7 @@ class LearningAgent(Agent):
 
         # When learning, implement the value iteration update rule
         if self.learning:
-            self.Q[state][action]=reward*self.alpha+(1-self.alpha)*self.Q[state][action]  #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
+            self.Q[state][action]=(1-self.alpha)*self.Q[state][action]+reward*self.alpha          #   Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
         
         return
 

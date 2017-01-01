@@ -124,7 +124,7 @@ def plot_trials(csv):
 	ax = plt.subplot2grid((6,6), (2,3), colspan=3, rowspan=2)
 
 	# Check whether the agent was expected to learn
-	if csv != 'sim_no-learning.csv':
+	if (csv not in ['sim_no-learning.csv','sim_no-learning_random_actions.csv','sim_no-learning_no_actions.csv']):
 		ax.set_ylabel("Parameter Value")
 		ax.set_xlabel("Trial Number")
 		ax.set_xlim((1, len(training_data)))
@@ -206,11 +206,14 @@ def plot_trials(csv):
 		ax.text(0.40, 0, "{}".format(reliability_rating), fontsize=40, ha='center', color=reliability_color)
 
 	else:
-		ax.text(0.36, 0.30, "Simulation completed\nwith testing disabled.", fontsize=20, ha='center', style='italic')	
+		ax.text(0.36, 0.30, "Simulation completed\n with testing disabled.", fontsize=20, ha='center', style='italic')	
 
 	plt.tight_layout()
 	plt.show()
 
 if __name__=='__main__':
+	plot_trials('sim_no-learning_random_actions.csv')
+	plot_trials('sim_no-learning_no_actions.csv')
+	plot_trials('sim_no-learning.csv')
 	# plot_trials('sim_default-learning.csv')
-	plot_trials('sim_improved-learning.csv')
+	# plot_trials('sim_improved-learning.csv')
